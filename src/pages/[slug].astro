@@ -1,0 +1,168 @@
+---
+import { readFileSync, existsSync } from 'node:fs';
+import path from 'node:path';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServicosGrid from '../components/ServicosGrid.astro';
+import Sobre from '../components/Sobre.astro';
+import ComoNosEncontrar from '../components/ComoNosEncontrar.astro';
+import Blog6Posts from '../components/Blog6Posts.astro';
+import Contato from '../components/Contato.astro';
+import Faq from '../components/Faq.astro';
+import locais from '../data/locais.json';
+import { siteConfig, servicos } from '../config/siteConfig';
+import {
+  localBusinessJsonLd,
+  serviceJsonLd,
+  breadcrumbJsonLd,
+  faqJsonLd,
+} from '../lib/jsonld';
+
+interface Local {
+  servico: string;
+  servicoLabel: string;
+  cidade: string;
+  cidadeLabel: string;
+  estado: string;
+  principal: boolean;
+}
+
+interface FaqItem {
+  pergunta: string;
+  resposta: string;
+}
+
+interface ConteudoPagina {
+  // Schema combinado com a Maria (src/data/pages/*.json)
+  title?: string;
+  description?: string;
+  h1?: string;
+  hero_subtitle?: string;
+  sobre_titulo?: string;
+  sobre_texto?: string;
+  faq?: FaqItem[];
+}
+
+export function getStaticPaths() {
+  const typed = locais as Local[];
+
+  return typed.map((l) => {
+    const slug = `${l.servico}-${l.cidade}`;
+    const jsonPath = path.join(
+      process.cwd(),
+      'src',
+      'data',
+      'pages',
+      `${slug}.json`
+    );
+
+    let conteudo: ConteudoPagina | null = null;
+    try {
+      if (existsSync(jsonPath)) {
+        const raw = readFileSync(jsonPath, 'utf-8');
+        conteudo = JSON.parse(raw) as ConteudoPagina;
+      }
+    } catch {
+      conteudo = null;
+    }
+
+    return {
+      params: { slug },
+      props: { local: l, conteudo },
+    };
+  });
+}
+
+interface Props {
+  local: Local;
+  conteudo: ConteudoPagina | null;
+}
+
+const { local, conteudo } = Astro.props as Props;
+
+// Fallbacks graciosos quando a Maria ainda não gerou o JSON
+const title =
+  conteudo?.title ??
+  `${local.servicoLabel} em ${local.cidadeLabel} - ${local.estado}`;
+
+const description =
+  conteudo?.description ??
+  `${local.servicoLabel} profissional em ${local.cidadeLabel} - ${local.estado}. Produtos antialérgicos, secagem rápida, orçamento pelo WhatsApp. Atendimento em toda a cidade.`;
+
+const heroTitulo =
+  conteudo?.h1 ??
+  `${local.servicoLabel} em ${local.cidadeLabel} - ${local.estado}`;
+
+const heroSubtitulo =
+  conteudo?.hero_subtitle ??
+  `Equipamento profissional, produtos antialérgicos e atendimento em todos os bairros de ${local.cidadeLabel}. Peça seu orçamento pelo WhatsApp.`;
+
+const faq: FaqItem[] =
+  conteudo?.faq && conteudo.faq.length > 0
+    ? conteudo.faq
+    : [
+        {
+          pergunta: `Vocês atendem em toda ${local.cidadeLabel}?`,
+          resposta: `Sim, atendemos todos os bairros de ${local.cidadeLabel} - ${local.estado}, incluindo distritos. Taxa de deslocamento, se houver, é sempre informada antes.`,
+        },
+        {
+          pergunta: `Quanto custa ${local.servicoLabel.toLowerCase()}?`,
+          resposta: `O valor varia conforme tamanho, tipo de tecido e condição da peça. Mande uma foto no WhatsApp ${siteConfig.whatsappDisplay} que a gente passa o orçamento na hora.`,
+        },
+        {
+          pergunta: 'Os produtos são seguros pra crianças e pets?',
+          resposta:
+            'Sim. Trabalhamos com produtos biodegradáveis, antialérgicos e aprovados pela ANVISA.',
+        },
+      ];
+
+const slug = `${local.servico}-${local.cidade}`;
+const canonical = `${siteConfig.siteUrl}/${slug}`;
+
+const jsonLd = [
+  localBusinessJsonLd(),
+  serviceJsonLd(local.servicoLabel, local.servico),
+  breadcrumbJsonLd([
+    { nome: 'Início', url: siteConfig.siteUrl },
+    { nome: 'Serviços', url: `${siteConfig.siteUrl}/#servicos` },
+    { nome: local.servicoLabel, url: canonical },
+  ]),
+  faqJsonLd(faq),
+].filter((x): x is Record<string, unknown> => x !== null);
+
+// Garante que o serviço existe em siteConfig (safety)
+const servicoExiste = servicos.find((s) => s.slug === local.servico);
+if (!servicoExiste) {
+  // Soft log; não bloqueia build
+  console.warn(`[slug].astro: serviço ${local.servico} não está em siteConfig.servicos`);
+}
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={jsonLd}
+>
+  <Hero
+    titulo={heroTitulo}
+    subtitulo={heroSubtitulo}
+    servicoLabel={local.servicoLabel}
+    destaque={`${local.servicoLabel} - ${local.cidadeLabel}`}
+    ctaLabel={`Orçamento de ${local.servicoLabel}`}
+  />
+  <ServicosGrid
+    servicoAtivo={local.servico}
+    titulo={`Mais serviços em ${local.cidadeLabel}`}
+    subtitulo="Todos os serviços de higienização que oferecemos. Você está vendo:"
+  />
+  <Sobre
+    titulo={conteudo?.sobre_titulo ?? `${siteConfig.nome}`}
+    texto={conteudo?.sobre_texto}
+  />
+  <ComoNosEncontrar />
+  <Blog6Posts />
+  <Faq faq={faq} />
+  <Contato servicoLabel={local.servicoLabel} />
+</BaseLayout>

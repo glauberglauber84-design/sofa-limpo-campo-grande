@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/siteConfig';
+
+const atualizadoEm = new Date().toLocaleDateString('pt-BR');
+---
+
+<BaseLayout
+  title={`Política de Privacidade - ${siteConfig.nome}`}
+  description={`Política de privacidade da ${siteConfig.nome} em conformidade com a LGPD.`}
+  noindex={true}
+>
+  <section class="bg-white">
+    <div class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+      <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-primaria">Início</a>
+        <span class="mx-1">/</span>
+        <span>Política de Privacidade</span>
+      </nav>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-primaria-escura mb-2">
+        Política de Privacidade
+      </h1>
+      <p class="text-sm text-slate-500 mb-8">
+        Atualizada em {atualizadoEm}
+      </p>
+
+      <article class="prose prose-slate max-w-none text-slate-700 space-y-4">
+        <h2 class="text-xl font-bold text-primaria-escura mt-6">1. Quem somos</h2>
+        <p>
+          Esta é a política de privacidade da <strong>{siteConfig.nome}</strong>,
+          com atendimento em {siteConfig.endereco.cidade} - {siteConfig.endereco.estado}.
+          Contato: {siteConfig.email}.
+        </p>
+
+        <h2 class="text-xl font-bold text-primaria-escura mt-6">2. Dados que coletamos</h2>
+        <p>
+          Coletamos somente os dados que você informa voluntariamente ao preencher
+          nosso formulário de contato ou ao nos chamar pelo WhatsApp: nome,
+          telefone, e-mail e a descrição do serviço desejado.
+        </p>
+
+        <h2 class="text-xl font-bold text-primaria-escura mt-6">3. Como usamos</h2>
+        <p>
+          Usamos seus dados exclusivamente para responder ao seu pedido de
+          orçamento, agendar atendimento e, se autorizado, enviar follow-up
+          sobre o serviço. Não vendemos nem compartilhamos sua informação com
+          terceiros fora da operação do serviço contratado.
+        </p>
+
+        <h2 class="text-xl font-bold text-primaria-escura mt-6">4. Seus direitos (LGPD)</h2>
+        <p>
+          Conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018), você pode
+          a qualquer momento solicitar acesso, correção ou exclusão dos seus
+          dados. Basta enviar e-mail para {siteConfig.email}.
+        </p>
+
+        <h2 class="text-xl font-bold text-primaria-escura mt-6">5. Cookies</h2>
+        <p>
+          Este site não utiliza cookies de rastreamento publicitário. Pode haver
+          cookies técnicos essenciais para o funcionamento básico (por exemplo,
+          o mapa embutido do Google).
+        </p>
+
+        <h2 class="text-xl font-bold text-primaria-escura mt-6">6. Alterações</h2>
+        <p>
+          Esta política pode ser atualizada. Sempre que isso acontecer, a data
+          no topo da página será modificada.
+        </p>
+
+        <p class="text-sm text-slate-500 pt-4 border-t border-slate-200">
+          Observação honesta: este é um texto base. Se o seu negócio tratar
+          dados em volume ou de forma diferente do descrito acima, consulte um
+          advogado especializado em LGPD para adequar.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

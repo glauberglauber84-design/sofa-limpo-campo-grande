@@ -1,0 +1,81 @@
+---
+import { siteConfig } from '../config/siteConfig';
+
+export interface Props {
+  titulo?: string;
+  texto?: string;
+}
+
+const {
+  titulo = `Quem é a ${siteConfig.nome}`,
+  texto,
+} = Astro.props;
+
+const anosExperiencia = new Date().getFullYear() - siteConfig.anoFundacao;
+
+const paragrafos = texto
+  ? texto
+      .split(/\n{2,}/)
+      .map((p) => p.trim())
+      .filter((p) => p.length > 0)
+  : [];
+---
+
+<section class="bg-white">
+  <div class="max-w-content mx-auto px-4 py-12 sm:py-16 grid lg:grid-cols-2 gap-8 items-center">
+    <div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-primaria-escura mb-4">
+        {titulo}
+      </h2>
+      {paragrafos.length > 0 ? (
+        <div class="prose prose-slate max-w-none text-slate-700 space-y-3">
+          {paragrafos.map((p) => <p>{p}</p>)}
+        </div>
+      ) : (
+        <div class="text-slate-700 space-y-3">
+          <p>
+            Somos a {siteConfig.nome}, especialistas em higienização
+            profunda de estofados em {siteConfig.endereco.cidade} - {siteConfig.endereco.estado}.
+            Há {anosExperiencia} anos atendendo famílias e empresas da região com
+            equipamento profissional e produtos antialérgicos aprovados pela ANVISA.
+          </p>
+          <p>
+            Nosso diferencial está no cuidado com cada peça: antes de aplicar
+            qualquer produto fazemos teste em área oculta, usamos técnica apropriada
+            pra cada tipo de tecido (suede, veludo, courino, chenille, linho) e
+            garantimos secagem rápida pra você usar o sofá no mesmo dia.
+          </p>
+        </div>
+      )}
+      <ul class="mt-6 grid grid-cols-2 gap-3 text-sm">
+        <li class="bg-bgsuave rounded-sm p-3">
+          <strong class="block text-primaria-escura text-lg">+{anosExperiencia} anos</strong>
+          de experiência no ramo
+        </li>
+        <li class="bg-bgsuave rounded-sm p-3">
+          <strong class="block text-primaria-escura text-lg">100%</strong>
+          produtos antialérgicos
+        </li>
+        <li class="bg-bgsuave rounded-sm p-3">
+          <strong class="block text-primaria-escura text-lg">Secagem</strong>
+          em até 4 horas
+        </li>
+        <li class="bg-bgsuave rounded-sm p-3">
+          <strong class="block text-primaria-escura text-lg">Orçamento</strong>
+          sem compromisso
+        </li>
+      </ul>
+    </div>
+
+    <aside class="bg-bgsuave rounded-lg p-6 lg:p-8 border border-slate-200">
+      <h3 class="font-bold text-primaria-escura text-lg mb-3">Nosso compromisso</h3>
+      <ul class="space-y-2 text-sm text-slate-700">
+        <li class="flex gap-2"><span class="text-primaria font-bold">✓</span> Atendimento rápido via WhatsApp</li>
+        <li class="flex gap-2"><span class="text-primaria font-bold">✓</span> Técnicos uniformizados e identificados</li>
+        <li class="flex gap-2"><span class="text-primaria font-bold">✓</span> Equipamento de extração profissional</li>
+        <li class="flex gap-2"><span class="text-primaria font-bold">✓</span> Produtos biodegradáveis</li>
+        <li class="flex gap-2"><span class="text-primaria font-bold">✓</span> Garantia de satisfação</li>
+      </ul>
+    </aside>
+  </div>
+</section>

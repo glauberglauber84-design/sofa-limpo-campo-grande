@@ -1,0 +1,131 @@
+---
+import { siteConfig, montarLinkWhatsApp } from '../config/siteConfig';
+
+export interface Props {
+  servicoLabel?: string;
+}
+
+const { servicoLabel } = Astro.props;
+const linkWa = montarLinkWhatsApp(servicoLabel);
+const formAction = `https://formspree.io/f/${siteConfig.formspreeId}`;
+const assuntoDefault = servicoLabel
+  ? `Orçamento de ${servicoLabel}`
+  : 'Orçamento';
+---
+
+<section id="contato" class="bg-primaria-escura text-white">
+  <div class="max-w-content mx-auto px-4 py-12 sm:py-16 grid lg:grid-cols-2 gap-10">
+    <div>
+      <h2 class="text-2xl sm:text-3xl font-bold mb-3">
+        Peça seu orçamento agora
+      </h2>
+      <p class="text-slate-100/90 mb-6">
+        Resposta em até 30 minutos no horário comercial. Atendemos toda
+        {siteConfig.endereco.cidade} e região.
+      </p>
+
+      <a
+        href={linkWa}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-3 bg-whatsapp hover:bg-whatsappEscuro text-white font-bold px-6 py-4 rounded-sm text-lg shadow-card transition-colors mb-4"
+      >
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.52 3.48A11.78 11.78 0 0012.03 0C5.48 0 .17 5.31.17 11.86a11.73 11.73 0 001.59 5.92L0 24l6.4-1.68a11.86 11.86 0 005.63 1.44h.01c6.55 0 11.86-5.31 11.86-11.86a11.78 11.78 0 00-3.38-8.42z"/>
+        </svg>
+        Chamar no WhatsApp
+      </a>
+
+      <ul class="mt-4 space-y-2 text-sm text-slate-100/90">
+        <li>Telefone: {siteConfig.telefone}</li>
+        <li>E-mail: {siteConfig.email}</li>
+        <li>Horário: {siteConfig.horario}</li>
+      </ul>
+    </div>
+
+    <form
+      action={formAction}
+      method="POST"
+      class="bg-white text-texto rounded-lg p-6 shadow-cardHover space-y-4"
+    >
+      <h3 class="text-xl font-bold text-primaria-escura">
+        Ou preencha o formulário
+      </h3>
+
+      <input type="hidden" name="_subject" value={assuntoDefault} />
+      <input type="hidden" name="_next" value={`${siteConfig.siteUrl}/obrigado`} />
+
+      <div>
+        <label for="nome" class="block text-sm font-medium text-slate-700 mb-1">
+          Nome *
+        </label>
+        <input
+          id="nome"
+          name="nome"
+          type="text"
+          required
+          autocomplete="name"
+          class="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primaria focus:border-primaria"
+        />
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="telefone" class="block text-sm font-medium text-slate-700 mb-1">
+            WhatsApp *
+          </label>
+          <input
+            id="telefone"
+            name="telefone"
+            type="tel"
+            required
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="(67) 99999-9999"
+            class="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primaria focus:border-primaria"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-slate-700 mb-1">
+            E-mail
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            class="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primaria focus:border-primaria"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="mensagem" class="block text-sm font-medium text-slate-700 mb-1">
+          Qual serviço você precisa? *
+        </label>
+        <textarea
+          id="mensagem"
+          name="mensagem"
+          required
+          rows="4"
+          class="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primaria focus:border-primaria"
+        >{servicoLabel ? `Gostaria de orçamento para: ${servicoLabel}` : ''}</textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-primaria hover:bg-primaria-escura text-white font-bold px-6 py-3 rounded-sm transition-colors"
+      >
+        Enviar pedido de orçamento
+      </button>
+
+      <p class="text-xs text-slate-500">
+        Também pode nos chamar direto por
+        <a href={`mailto:${siteConfig.email}`} class="text-primaria underline">
+          e-mail
+        </a>
+        se preferir.
+      </p>
+    </form>
+  </div>
+</section>

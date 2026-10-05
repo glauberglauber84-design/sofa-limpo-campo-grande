@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f5f8c"/>
+      <stop offset="0.55" stop-color="#2a7fba"/>
+      <stop offset="1" stop-color="#4a9ad5"/>
+    </linearGradient>
+    <linearGradient id="sofa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Padrão decorativo -->
+  <g opacity="0.08" fill="#ffffff">
+    <circle cx="100" cy="100" r="80"/>
+    <circle cx="1100" cy="530" r="120"/>
+    <circle cx="1050" cy="80" r="40"/>
+  </g>
+
+  <!-- Logo quadrado -->
+  <g transform="translate(80, 120)">
+    <rect width="110" height="110" rx="20" fill="#ffffff"/>
+    <text x="55" y="78" font-family="Inter, system-ui, sans-serif" font-size="54" font-weight="800" fill="#1f5f8c" text-anchor="middle" letter-spacing="-2">SL</text>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="80" y="310" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#ffffff" letter-spacing="-2">
+    Sofá Limpo
+  </text>
+  <text x="80" y="390" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#ffffff" letter-spacing="-2">
+    Campo Grande
+  </text>
+
+  <!-- Subtítulo -->
+  <text x="80" y="450" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="500" fill="#ffffff" fill-opacity="0.95">
+    Higienização profissional de estofados em Campo Grande - MS
+  </text>
+
+  <!-- Badges -->
+  <g transform="translate(80, 500)" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="600" fill="#ffffff">
+    <g>
+      <rect width="260" height="52" rx="26" fill="#ffffff" fill-opacity="0.18" stroke="#ffffff" stroke-opacity="0.4"/>
+      <text x="130" y="34" text-anchor="middle">✓ Secagem rápida</text>
+    </g>
+    <g transform="translate(280, 0)">
+      <rect width="340" height="52" rx="26" fill="#ffffff" fill-opacity="0.18" stroke="#ffffff" stroke-opacity="0.4"/>
+      <text x="170" y="34" text-anchor="middle">✓ Produtos antialérgicos</text>
+    </g>
+    <g transform="translate(640, 0)">
+      <rect width="300" height="52" rx="26" fill="#ffffff" fill-opacity="0.18" stroke="#ffffff" stroke-opacity="0.4"/>
+      <text x="150" y="34" text-anchor="middle">✓ Orçamento WhatsApp</text>
+    </g>
+  </g>
+
+  <!-- Ilustração sofá -->
+  <g transform="translate(760, 110)">
+    <rect x="0" y="100" width="360" height="110" rx="18" fill="url(#sofa)"/>
+    <rect x="0" y="60" width="360" height="60" rx="14" fill="#ffffff" fill-opacity="0.85"/>
+    <rect x="20" y="70" width="100" height="46" rx="10" fill="#ffffff"/>
+    <rect x="130" y="70" width="100" height="46" rx="10" fill="#ffffff"/>
+    <rect x="240" y="70" width="100" height="46" rx="10" fill="#ffffff"/>
+    <rect x="-10" y="180" width="20" height="60" rx="4" fill="#ffffff" fill-opacity="0.9"/>
+    <rect x="350" y="180" width="20" height="60" rx="4" fill="#ffffff" fill-opacity="0.9"/>
+    <circle cx="310" cy="20" r="28" fill="#25D366"/>
+    <text x="310" y="30" text-anchor="middle" font-size="32" font-weight="bold" fill="#ffffff">✓</text>
+  </g>
+</svg>

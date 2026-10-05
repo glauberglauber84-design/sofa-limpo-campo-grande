@@ -1,0 +1,88 @@
+---
+import { siteConfig, servicos, montarLinkWhatsApp } from '../config/siteConfig';
+const linkWa = montarLinkWhatsApp();
+const ano = new Date().getFullYear();
+---
+
+<footer class="bg-primaria-escura text-slate-100 mt-16">
+  <div class="max-w-content mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <section aria-labelledby="footer-servicos">
+      <h2 id="footer-servicos" class="text-white font-bold text-base mb-3 uppercase tracking-wide">
+        Serviços
+      </h2>
+      <ul class="space-y-2 text-sm">
+        {servicos.map((s) => (
+          <li>
+            <a
+              href={`/${s.slug}-campo-grande`}
+              class="hover:text-white hover:underline underline-offset-4"
+            >
+              {s.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="footer-contato">
+      <h2 id="footer-contato" class="text-white font-bold text-base mb-3 uppercase tracking-wide">
+        Contato
+      </h2>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a
+            href={linkWa}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 hover:text-white"
+          >
+            <span class="inline-block w-2 h-2 rounded-full bg-whatsapp" aria-hidden="true"></span>
+            WhatsApp: {siteConfig.whatsappDisplay}
+          </a>
+        </li>
+        <li>
+          <a href={`tel:+55${siteConfig.whatsapp}`} class="hover:text-white">
+            Telefone: {siteConfig.telefone}
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${siteConfig.email}`} class="hover:text-white break-all">
+            {siteConfig.email}
+          </a>
+        </li>
+        <li class="pt-1 text-slate-300">
+          <span class="block">Horário:</span>
+          <span>{siteConfig.horario}</span>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="footer-endereco">
+      <h2 id="footer-endereco" class="text-white font-bold text-base mb-3 uppercase tracking-wide">
+        {siteConfig.nome}
+      </h2>
+      <address class="not-italic text-sm space-y-1 text-slate-200">
+        <p>{siteConfig.endereco.rua}</p>
+        <p>{siteConfig.endereco.bairro}</p>
+        <p>
+          {siteConfig.endereco.cidade} - {siteConfig.endereco.estado}
+        </p>
+        <p>CEP: {siteConfig.endereco.cep}</p>
+      </address>
+      <nav class="mt-4 text-sm space-y-1" aria-label="Rodapé institucional">
+        <a href="/sobre" class="block hover:text-white">Sobre nós</a>
+        <a href="/contato" class="block hover:text-white">Fale conosco</a>
+        <a href="/politica-privacidade" class="block hover:text-white">Política de privacidade</a>
+      </nav>
+    </section>
+  </div>
+
+  <div class="border-t border-primaria/40">
+    <div class="max-w-content mx-auto px-4 py-4 text-xs text-slate-300 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>
+        &copy; {ano} {siteConfig.nome}. Todos os direitos reservados.
+      </p>
+      <p>Atendimento em Campo Grande - MS e região.</p>
+    </div>
+  </div>
+</footer>

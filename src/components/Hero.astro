@@ -1,0 +1,94 @@
+---
+import { montarLinkWhatsApp } from '../config/siteConfig';
+
+export interface Props {
+  titulo: string;
+  subtitulo: string;
+  ctaLabel?: string;
+  servicoLabel?: string;
+  destaque?: string;
+}
+
+const {
+  titulo,
+  subtitulo,
+  ctaLabel = 'Pedir orçamento no WhatsApp',
+  servicoLabel,
+  destaque,
+} = Astro.props;
+
+const linkWa = montarLinkWhatsApp(servicoLabel);
+---
+
+<section class="relative bg-gradient-to-br from-primaria-escura via-primaria to-primaria-clara text-white">
+  <div class="max-w-content mx-auto px-4 py-10 sm:py-16 lg:py-20 grid lg:grid-cols-2 gap-8 items-center">
+    <div>
+      {destaque && (
+        <span class="inline-block bg-white/15 border border-white/30 text-xs sm:text-sm font-semibold uppercase tracking-wide px-3 py-1 rounded-sm mb-4 backdrop-blur-sm">
+          {destaque}
+        </span>
+      )}
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+        {titulo}
+      </h1>
+      <p class="text-base sm:text-lg text-slate-100/95 mb-6 max-w-xl">
+        {subtitulo}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a
+          href={linkWa}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center justify-center gap-2 bg-whatsapp hover:bg-whatsappEscuro text-white font-bold px-6 py-3 rounded-sm text-base shadow-card transition-colors"
+        >
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.52 3.48A11.78 11.78 0 0012.03 0C5.48 0 .17 5.31.17 11.86a11.73 11.73 0 001.59 5.92L0 24l6.4-1.68a11.86 11.86 0 005.63 1.44h.01c6.55 0 11.86-5.31 11.86-11.86a11.78 11.78 0 00-3.38-8.42z"/>
+          </svg>
+          {ctaLabel}
+        </a>
+        <a
+          href="#servicos"
+          class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-6 py-3 rounded-sm text-base transition-colors"
+        >
+          Ver serviços
+        </a>
+      </div>
+      <ul class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-white/90">
+        <li class="flex items-center gap-2">
+          <span class="w-5 h-5 rounded-full bg-whatsapp/90 inline-flex items-center justify-center text-xs font-bold">✓</span>
+          Secagem rápida
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-5 h-5 rounded-full bg-whatsapp/90 inline-flex items-center justify-center text-xs font-bold">✓</span>
+          Produtos antialérgicos
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-5 h-5 rounded-full bg-whatsapp/90 inline-flex items-center justify-center text-xs font-bold">✓</span>
+          Orçamento sem compromisso
+        </li>
+      </ul>
+    </div>
+
+    <div class="hidden lg:block">
+      <div class="relative aspect-[4/3] rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 overflow-hidden shadow-cardHover">
+        <svg viewBox="0 0 400 300" class="w-full h-full" aria-hidden="true">
+          <defs>
+            <linearGradient id="sofa" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="0.5"/>
+            </linearGradient>
+          </defs>
+          <rect x="40" y="130" width="320" height="110" rx="18" fill="url(#sofa)"/>
+          <rect x="40" y="100" width="320" height="50" rx="14" fill="#ffffff" fill-opacity="0.8"/>
+          <rect x="60" y="110" width="90" height="40" rx="10" fill="#ffffff" fill-opacity="0.95"/>
+          <rect x="155" y="110" width="90" height="40" rx="10" fill="#ffffff" fill-opacity="0.95"/>
+          <rect x="250" y="110" width="90" height="40" rx="10" fill="#ffffff" fill-opacity="0.95"/>
+          <rect x="30" y="200" width="20" height="60" rx="4" fill="#ffffff" fill-opacity="0.9"/>
+          <rect x="350" y="200" width="20" height="60" rx="4" fill="#ffffff" fill-opacity="0.9"/>
+          <circle cx="320" cy="60" r="22" fill="#25D366"/>
+          <text x="320" y="68" text-anchor="middle" font-size="24" font-weight="bold" fill="#ffffff">✓</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>

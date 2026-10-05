@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Sobre from '../components/Sobre.astro';
+import ComoNosEncontrar from '../components/ComoNosEncontrar.astro';
+import Contato from '../components/Contato.astro';
+import Faq from '../components/Faq.astro';
+import { siteConfig } from '../config/siteConfig';
+import {
+  localBusinessJsonLd,
+  aboutPageJsonLd,
+  breadcrumbJsonLd,
+  faqJsonLd,
+} from '../lib/jsonld';
+
+const anosExperiencia = new Date().getFullYear() - siteConfig.anoFundacao;
+
+const faq = [
+  {
+    pergunta: 'Quem é o responsável pela empresa?',
+    resposta: `A ${siteConfig.nome} é liderada por ${siteConfig.responsavel}, técnico com experiência em higienização de estofados em ${siteConfig.endereco.cidade} - ${siteConfig.endereco.estado}.`,
+  },
+  {
+    pergunta: 'Vocês têm CNPJ e emitem nota fiscal?',
+    resposta:
+      'Sim. Emitimos nota fiscal eletrônica (NFS-e) para serviços residenciais e corporativos. Solicite na hora do orçamento.',
+  },
+  {
+    pergunta: 'Quais são as formas de pagamento?',
+    resposta:
+      'Aceitamos PIX, dinheiro, cartões de débito e crédito (parcelado em até 3x sem juros em alguns casos).',
+  },
+];
+
+const jsonLd = [
+  localBusinessJsonLd(),
+  aboutPageJsonLd(),
+  breadcrumbJsonLd([
+    { nome: 'Início', url: siteConfig.siteUrl },
+    { nome: 'Sobre', url: `${siteConfig.siteUrl}/sobre` },
+  ]),
+  faqJsonLd(faq),
+].filter((x): x is Record<string, unknown> => x !== null);
+---
+
+<BaseLayout
+  title={`Sobre a ${siteConfig.nome}`}
+  description={`Conheça a ${siteConfig.nome}: há ${anosExperiencia} anos higienizando estofados em ${siteConfig.endereco.cidade} - ${siteConfig.endereco.estado}. Produtos antialérgicos, equipamento profissional e atendimento humano.`}
+  jsonLd={jsonLd}
+>
+  <Hero
+    titulo={`Sobre a ${siteConfig.nome}`}
+    subtitulo={`Há ${anosExperiencia} anos cuidando dos estofados de famílias e empresas em ${siteConfig.endereco.cidade} - ${siteConfig.endereco.estado}.`}
+    destaque="Nossa história"
+  />
+  <Sobre />
+  <ComoNosEncontrar />
+  <Faq faq={faq} />
+  <Contato />
+</BaseLayout>

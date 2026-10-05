@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Contato from '../components/Contato.astro';
+import ComoNosEncontrar from '../components/ComoNosEncontrar.astro';
+import { siteConfig } from '../config/siteConfig';
+import { localBusinessJsonLd, breadcrumbJsonLd } from '../lib/jsonld';
+
+const jsonLd = [
+  localBusinessJsonLd(),
+  breadcrumbJsonLd([
+    { nome: 'Início', url: siteConfig.siteUrl },
+    { nome: 'Contato', url: `${siteConfig.siteUrl}/contato` },
+  ]),
+];
+---
+
+<BaseLayout
+  title={`Contato - ${siteConfig.nome}`}
+  description={`Fale com a ${siteConfig.nome}: WhatsApp ${siteConfig.whatsappDisplay}, e-mail ${siteConfig.email}. Atendimento em ${siteConfig.horario}.`}
+  jsonLd={jsonLd}
+>
+  <Hero
+    titulo="Fale com a gente"
+    subtitulo={`WhatsApp, telefone, e-mail ou formulário. Respondemos em até 30 minutos no horário comercial (${siteConfig.horario}).`}
+    destaque="Atendimento"
+  />
+  <Contato />
+  <ComoNosEncontrar />
+</BaseLayout>

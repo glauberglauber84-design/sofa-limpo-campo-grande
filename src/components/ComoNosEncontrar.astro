@@ -1,0 +1,62 @@
+---
+import { siteConfig } from '../config/siteConfig';
+---
+
+<section class="bg-bgsuave">
+  <div class="max-w-content mx-auto px-4 py-12 sm:py-16">
+    <header class="max-w-2xl mb-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-primaria-escura mb-2">
+        Como nos encontrar
+      </h2>
+      <p class="text-slate-700">
+        Atendemos em toda {siteConfig.endereco.cidade} e região. Base operacional:
+      </p>
+    </header>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+      <div class="bg-white rounded-md shadow-card overflow-hidden border border-slate-200">
+        <iframe
+          src={siteConfig.mapsEmbed}
+          width="100%"
+          height="340"
+          style="border:0"
+          allowfullscreen={false}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title={`Mapa de ${siteConfig.endereco.cidade}`}
+        ></iframe>
+      </div>
+
+      <div class="bg-white rounded-md shadow-card p-6 border border-slate-200">
+        <h3 class="font-bold text-primaria-escura text-lg mb-3">{siteConfig.nome}</h3>
+        <address class="not-italic text-slate-700 space-y-1">
+          <p>{siteConfig.endereco.rua}</p>
+          <p>{siteConfig.endereco.bairro}</p>
+          <p>
+            {siteConfig.endereco.cidade} - {siteConfig.endereco.estado}
+          </p>
+          <p>CEP: {siteConfig.endereco.cep}</p>
+        </address>
+
+        <dl class="mt-4 space-y-2 text-sm text-slate-700">
+          <div class="flex flex-col sm:flex-row sm:gap-2">
+            <dt class="font-semibold text-primaria-escura min-w-[6rem]">WhatsApp:</dt>
+            <dd>{siteConfig.whatsappDisplay}</dd>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:gap-2">
+            <dt class="font-semibold text-primaria-escura min-w-[6rem]">Telefone:</dt>
+            <dd>{siteConfig.telefone}</dd>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:gap-2">
+            <dt class="font-semibold text-primaria-escura min-w-[6rem]">E-mail:</dt>
+            <dd class="break-all">{siteConfig.email}</dd>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:gap-2">
+            <dt class="font-semibold text-primaria-escura min-w-[6rem]">Horário:</dt>
+            <dd>{siteConfig.horario}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,70 @@
+---
+import { servicos } from '../config/siteConfig';
+
+export interface Props {
+  servicoAtivo?: string;
+  titulo?: string;
+  subtitulo?: string;
+}
+
+const {
+  servicoAtivo,
+  titulo = 'Serviços de higienização em Campo Grande',
+  subtitulo = 'Atendemos residências, escritórios e veículos com equipamento profissional.',
+} = Astro.props;
+---
+
+<section id="servicos" class="bg-bgsuave">
+  <div class="max-w-content mx-auto px-4 py-12 sm:py-16">
+    <header class="max-w-2xl mb-8 sm:mb-10">
+      <h2 class="text-2xl sm:text-3xl font-bold text-primaria-escura mb-2">
+        {titulo}
+      </h2>
+      <p class="text-slate-700">{subtitulo}</p>
+    </header>
+
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {servicos.map((s) => {
+        const ativo = servicoAtivo === s.slug;
+        const href = `/${s.slug}-campo-grande`;
+        return (
+          <li>
+            <a
+              href={href}
+              aria-current={ativo ? 'page' : undefined}
+              class={`block h-full bg-white rounded-md p-5 shadow-card hover:shadow-cardHover transition-shadow border ${
+                ativo
+                  ? 'border-primaria ring-2 ring-primaria/30'
+                  : 'border-transparent hover:border-primaria/30'
+              }`}
+            >
+              <div class="flex items-start gap-3">
+                <span
+                  class={`inline-flex shrink-0 w-11 h-11 items-center justify-center rounded-sm text-white font-bold ${
+                    ativo ? 'bg-primaria-escura' : 'bg-primaria'
+                  }`}
+                  aria-hidden="true"
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 11h16v2H4zm1-5h14v2H5zm1 10h12v2H6z"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="font-semibold text-primaria-escura text-base leading-snug">
+                    {s.label}
+                    {ativo && (
+                      <span class="block text-xs font-normal text-primaria mt-0.5">
+                        Você está nesta página
+                      </span>
+                    )}
+                  </h3>
+                  <p class="text-sm text-slate-600 mt-1">{s.descricao}</p>
+                </div>
+              </div>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>

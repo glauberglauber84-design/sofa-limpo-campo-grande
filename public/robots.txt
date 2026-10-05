@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /obrigado
+Disallow: /politica-privacidade
+
+Sitemap: https://sofalimpocampogrande.com.br/sitemap-index.xml

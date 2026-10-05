@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServicosGrid from '../components/ServicosGrid.astro';
+import Sobre from '../components/Sobre.astro';
+import ComoNosEncontrar from '../components/ComoNosEncontrar.astro';
+import Blog6Posts from '../components/Blog6Posts.astro';
+import Contato from '../components/Contato.astro';
+import Faq from '../components/Faq.astro';
+import { siteConfig } from '../config/siteConfig';
+import {
+  localBusinessJsonLd,
+  websiteJsonLd,
+  faqJsonLd,
+} from '../lib/jsonld';
+
+const faq = [
+  {
+    pergunta: 'Vocês atendem em toda Campo Grande?',
+    resposta:
+      'Sim, atendemos todos os bairros de Campo Grande - MS, inclusive os distritos. Para áreas mais afastadas pode haver taxa de deslocamento, sempre informada no orçamento.',
+  },
+  {
+    pergunta: 'Quanto tempo demora pra higienização?',
+    resposta:
+      'Um sofá de 3 lugares leva em média de 1 a 2 horas de serviço. A secagem completa é de 3 a 6 horas dependendo do tecido e da ventilação do ambiente.',
+  },
+  {
+    pergunta: 'Os produtos usados são seguros pra crianças e pets?',
+    resposta:
+      'Sim. Usamos produtos biodegradáveis, antialérgicos e aprovados pela ANVISA. São seguros pra crianças, idosos, gestantes e animais de estimação.',
+  },
+  {
+    pergunta: 'Como funciona o orçamento?',
+    resposta:
+      'Totalmente gratuito e sem compromisso. Você manda uma foto do estofado pelo WhatsApp, descreve o problema e já passamos o valor na hora.',
+  },
+];
+
+const jsonLd = [
+  websiteJsonLd(),
+  localBusinessJsonLd(),
+  faqJsonLd(faq),
+].filter((x): x is Record<string, unknown> => x !== null);
+---
+
+<BaseLayout
+  title={`${siteConfig.nome} - Higienização de Estofados em Campo Grande MS`}
+  description={siteConfig.descricao}
+  jsonLd={jsonLd}
+>
+  <Hero
+    titulo="Higienização profissional de sofás em Campo Grande - MS"
+    subtitulo="Sofás, colchões, poltronas, tapetes e estofados automotivos como novos. Produtos antialérgicos, secagem rápida e orçamento pelo WhatsApp."
+    destaque="Atendemos toda Campo Grande - MS"
+  />
+  <ServicosGrid />
+  <Sobre />
+  <ComoNosEncontrar />
+  <Blog6Posts />
+  <Faq faq={faq} />
+  <Contato />
+</BaseLayout>

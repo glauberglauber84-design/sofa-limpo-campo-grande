@@ -1,0 +1,82 @@
+[
+  {
+    "servico": "limpeza-de-sofa",
+    "servicoLabel": "Limpeza de Sofá",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": true
+  },
+  {
+    "servico": "higienizacao-de-estofados",
+    "servicoLabel": "Higienização de Estofados",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": false
+  },
+  {
+    "servico": "limpeza-de-colchao",
+    "servicoLabel": "Limpeza de Colchão",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": false
+  },
+  {
+    "servico": "limpeza-de-poltronas-e-cadeiras",
+    "servicoLabel": "Limpeza de Poltronas e Cadeiras Estofadas",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": false
+  },
+  {
+    "servico": "limpeza-de-tapetes-e-carpetes",
+    "servicoLabel": "Limpeza de Tapetes e Carpetes",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": false
+  },
+  {
+    "servico": "limpeza-de-cortinas",
+    "servicoLabel": "Limpeza de Cortinas",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": false
+  },
+  {
+    "servico": "limpeza-de-estofados-automotivos",
+    "servicoLabel": "Limpeza de Estofados Automotivos",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": false
+  },
+  {
+    "servico": "impermeabilizacao-de-sofa",
+    "servicoLabel": "Impermeabilização de Sofá",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": false
+  },
+  {
+    "servico": "remocao-de-manchas-e-odores",
+    "servicoLabel": "Remoção de Manchas e Odores",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": false
+  },
+  {
+    "servico": "higienizacao-de-cabeceiras-e-puffs",
+    "servicoLabel": "Higienização de Cabeceiras e Puffs",
+    "cidade": "campo-grande",
+    "cidadeLabel": "Campo Grande",
+    "estado": "MS",
+    "principal": false
+  }
+]

@@ -1,0 +1,52 @@
+---
+// Grid de 6 posts - placeholder "em breve". Quando houver conteúdo real,
+// trocar o array por leitura de content collection.
+
+const placeholders = [
+  'Como higienizar sofá de tecido claro sem deixar manchas',
+  'Impermeabilização de sofá: vale a pena em 2026?',
+  'Como remover cheiro de xixi de pet no estofado',
+  '5 cuidados para seu colchão durar mais',
+  'Tapete persa: dá para limpar em casa?',
+  'Quanto tempo demora para secar um sofá após higienização',
+];
+---
+
+<section class="bg-white">
+  <div class="max-w-content mx-auto px-4 py-12 sm:py-16">
+    <header class="max-w-2xl mb-8 flex items-end justify-between gap-4 flex-wrap">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-primaria-escura mb-2">
+          Dicas e novidades
+        </h2>
+        <p class="text-slate-700">
+          Nosso blog com conteúdo prático sobre cuidados com estofados.
+        </p>
+      </div>
+      <span class="text-xs font-semibold uppercase tracking-wide text-primaria bg-primaria/10 px-3 py-1 rounded-sm">
+        Em breve
+      </span>
+    </header>
+
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {placeholders.map((titulo) => (
+        <li class="bg-bgsuave rounded-md border border-slate-200 overflow-hidden">
+          <div
+            class="aspect-video bg-gradient-to-br from-primaria/15 to-primaria/5 flex items-center justify-center text-primaria-escura/60 text-xs font-medium"
+            aria-hidden="true"
+          >
+            Em breve
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-slate-700 text-sm leading-snug">
+              {titulo}
+            </h3>
+            <p class="text-xs text-slate-500 mt-1">
+              Artigo em preparação pela nossa equipe editorial.
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
