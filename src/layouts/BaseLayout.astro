@@ -68,9 +68,33 @@ const {
   }
   body {
     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
   img {
     max-width: 100%;
     height: auto;
+  }
+  /* paragrafos de corpo com largura legivel ~65 chars */
+  main p,
+  main li {
+    max-width: 65ch;
+  }
+  main .prose p,
+  main .prose li {
+    max-width: 65ch;
+  }
+  /* respeita preferencia de usuario por menos movimento */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>

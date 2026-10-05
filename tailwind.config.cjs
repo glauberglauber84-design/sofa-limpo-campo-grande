@@ -25,6 +25,19 @@ module.exports = {
           'sans-serif',
         ],
       },
+      // Escala modular 1.25 (16 -> 20 -> 25 -> 31 -> 39 -> 49)
+      // Line-height: 1.5-1.65 em body/texto, 1.1-1.3 em titulos.
+      fontSize: {
+        xs: ['0.75rem', { lineHeight: '1.5' }], // 12
+        sm: ['0.875rem', { lineHeight: '1.55' }], // 14
+        base: ['1rem', { lineHeight: '1.6' }], // 16
+        lg: ['1.125rem', { lineHeight: '1.5' }], // 18 (intermediario)
+        xl: ['1.25rem', { lineHeight: '1.4' }], // 20
+        '2xl': ['1.5625rem', { lineHeight: '1.3' }], // 25
+        '3xl': ['1.9375rem', { lineHeight: '1.2' }], // 31
+        '4xl': ['2.4375rem', { lineHeight: '1.15' }], // 39
+        '5xl': ['3.0625rem', { lineHeight: '1.1' }], // 49
+      },
       borderRadius: {
         sm: '8px',
         md: '12px',
@@ -32,6 +45,7 @@ module.exports = {
       },
       maxWidth: {
         content: '1200px',
+        prose: '65ch',
       },
       boxShadow: {
         card: '0 2px 8px rgba(0,0,0,0.06)',

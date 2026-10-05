@@ -21,7 +21,7 @@ const linkWa = montarLinkWhatsApp(servicoLabel);
 ---
 
 <section class="relative bg-gradient-to-br from-primaria-escura via-primaria to-primaria-clara text-white">
-  <div class="max-w-content mx-auto px-4 py-10 sm:py-16 lg:py-20 grid lg:grid-cols-2 gap-8 items-center">
+  <div class="max-w-content mx-auto px-4 py-8 sm:py-16 lg:py-24 grid lg:grid-cols-2 gap-8 items-center">
     <div>
       {destaque && (
         <span class="inline-block bg-white/15 border border-white/30 text-xs sm:text-sm font-semibold uppercase tracking-wide px-3 py-1 rounded-sm mb-4 backdrop-blur-sm">
@@ -31,7 +31,7 @@ const linkWa = montarLinkWhatsApp(servicoLabel);
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
         {titulo}
       </h1>
-      <p class="text-base sm:text-lg text-slate-100/95 mb-6 max-w-xl">
+      <p class="text-base sm:text-lg text-white/95 mb-6 max-w-xl">
         {subtitulo}
       </p>
       <div class="flex flex-col sm:flex-row gap-3">
@@ -39,7 +39,7 @@ const linkWa = montarLinkWhatsApp(servicoLabel);
           href={linkWa}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center justify-center gap-2 bg-whatsapp hover:bg-whatsappEscuro text-white font-bold px-6 py-3 rounded-sm text-base shadow-card transition-colors"
+          class="inline-flex items-center justify-center gap-2 bg-whatsapp hover:bg-whatsappEscuro text-white font-bold px-6 py-3 rounded-sm text-base shadow-card transition-all duration-200 ease-out motion-safe:hover:scale-[1.02] min-h-[44px]"
         >
           <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20.52 3.48A11.78 11.78 0 0012.03 0C5.48 0 .17 5.31.17 11.86a11.73 11.73 0 001.59 5.92L0 24l6.4-1.68a11.86 11.86 0 005.63 1.44h.01c6.55 0 11.86-5.31 11.86-11.86a11.78 11.78 0 00-3.38-8.42z"/>
@@ -48,22 +48,22 @@ const linkWa = montarLinkWhatsApp(servicoLabel);
         </a>
         <a
           href="#servicos"
-          class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-6 py-3 rounded-sm text-base transition-colors"
+          class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/40 text-white font-semibold px-6 py-3 rounded-sm text-base transition-colors min-h-[44px]"
         >
           Ver serviços
         </a>
       </div>
-      <ul class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-white/90">
+      <ul class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-white/95">
         <li class="flex items-center gap-2">
-          <span class="w-5 h-5 rounded-full bg-whatsapp/90 inline-flex items-center justify-center text-xs font-bold">✓</span>
+          <span class="w-5 h-5 rounded-full bg-whatsapp inline-flex items-center justify-center text-xs font-bold">✓</span>
           Secagem rápida
         </li>
         <li class="flex items-center gap-2">
-          <span class="w-5 h-5 rounded-full bg-whatsapp/90 inline-flex items-center justify-center text-xs font-bold">✓</span>
+          <span class="w-5 h-5 rounded-full bg-whatsapp inline-flex items-center justify-center text-xs font-bold">✓</span>
           Produtos antialérgicos
         </li>
         <li class="flex items-center gap-2">
-          <span class="w-5 h-5 rounded-full bg-whatsapp/90 inline-flex items-center justify-center text-xs font-bold">✓</span>
+          <span class="w-5 h-5 rounded-full bg-whatsapp inline-flex items-center justify-center text-xs font-bold">✓</span>
           Orçamento sem compromisso
         </li>
       </ul>

@@ -15,7 +15,7 @@ const {
 ---
 
 <section id="servicos" class="bg-bgsuave">
-  <div class="max-w-content mx-auto px-4 py-12 sm:py-16">
+  <div class="max-w-content mx-auto px-4 py-12 sm:py-20">
     <header class="max-w-2xl mb-8 sm:mb-10">
       <h2 class="text-2xl sm:text-3xl font-bold text-primaria-escura mb-2">
         {titulo}
@@ -32,7 +32,7 @@ const {
             <a
               href={href}
               aria-current={ativo ? 'page' : undefined}
-              class={`block h-full bg-white rounded-md p-5 shadow-card hover:shadow-cardHover transition-shadow border ${
+              class={`block h-full bg-white rounded-md p-5 shadow-card hover:shadow-cardHover transition-all duration-200 ease-out motion-safe:hover:-translate-y-0.5 border ${
                 ativo
                   ? 'border-primaria ring-2 ring-primaria/30'
                   : 'border-transparent hover:border-primaria/30'
@@ -53,12 +53,12 @@ const {
                   <h3 class="font-semibold text-primaria-escura text-base leading-snug">
                     {s.label}
                     {ativo && (
-                      <span class="block text-xs font-normal text-primaria mt-0.5">
+                      <span class="block text-xs font-semibold text-primaria-escura mt-1">
                         Você está nesta página
                       </span>
                     )}
                   </h3>
-                  <p class="text-sm text-slate-600 mt-1">{s.descricao}</p>
+                  <p class="text-sm text-slate-700 mt-1">{s.descricao}</p>
                 </div>
               </div>
             </a>

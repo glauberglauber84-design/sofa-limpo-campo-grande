@@ -10,12 +10,12 @@ const ano = new Date().getFullYear();
       <h2 id="footer-servicos" class="text-white font-bold text-base mb-3 uppercase tracking-wide">
         Serviços
       </h2>
-      <ul class="space-y-2 text-sm">
+      <ul class="space-y-1 text-sm">
         {servicos.map((s) => (
           <li>
             <a
               href={`/${s.slug}-campo-grande`}
-              class="hover:text-white hover:underline underline-offset-4"
+              class="flex items-center py-2 min-h-[44px] hover:text-white hover:underline underline-offset-4 transition-colors"
             >
               {s.label}
             </a>
@@ -28,30 +28,30 @@ const ano = new Date().getFullYear();
       <h2 id="footer-contato" class="text-white font-bold text-base mb-3 uppercase tracking-wide">
         Contato
       </h2>
-      <ul class="space-y-2 text-sm">
+      <ul class="space-y-1 text-sm">
         <li>
           <a
             href={linkWa}
             target="_blank"
             rel="noopener"
-            class="inline-flex items-center gap-2 hover:text-white"
+            class="inline-flex items-center gap-2 py-2 min-h-[44px] hover:text-white transition-colors"
           >
             <span class="inline-block w-2 h-2 rounded-full bg-whatsapp" aria-hidden="true"></span>
             WhatsApp: {siteConfig.whatsappDisplay}
           </a>
         </li>
         <li>
-          <a href={`tel:+55${siteConfig.whatsapp}`} class="hover:text-white">
+          <a href={`tel:+55${siteConfig.whatsapp}`} class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">
             Telefone: {siteConfig.telefone}
           </a>
         </li>
         <li>
-          <a href={`mailto:${siteConfig.email}`} class="hover:text-white break-all">
+          <a href={`mailto:${siteConfig.email}`} class="flex items-center py-2 min-h-[44px] hover:text-white break-all transition-colors">
             {siteConfig.email}
           </a>
         </li>
-        <li class="pt-1 text-slate-300">
-          <span class="block">Horário:</span>
+        <li class="pt-2 text-slate-200">
+          <span class="block font-semibold">Horário:</span>
           <span>{siteConfig.horario}</span>
         </li>
       </ul>
@@ -69,10 +69,10 @@ const ano = new Date().getFullYear();
         </p>
         <p>CEP: {siteConfig.endereco.cep}</p>
       </address>
-      <nav class="mt-4 text-sm space-y-1" aria-label="Rodapé institucional">
-        <a href="/sobre" class="block hover:text-white">Sobre nós</a>
-        <a href="/contato" class="block hover:text-white">Fale conosco</a>
-        <a href="/politica-privacidade" class="block hover:text-white">Política de privacidade</a>
+      <nav class="mt-4 text-sm" aria-label="Rodapé institucional">
+        <a href="/sobre" class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">Sobre nós</a>
+        <a href="/contato" class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">Fale conosco</a>
+        <a href="/politica-privacidade" class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">Política de privacidade</a>
       </nav>
     </section>
   </div>

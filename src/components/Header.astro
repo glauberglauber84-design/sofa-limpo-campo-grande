@@ -5,32 +5,32 @@ const linkWa = montarLinkWhatsApp();
 
 <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200">
   <div class="max-w-content mx-auto px-4 py-3 flex items-center justify-between gap-4">
-    <a href="/" class="flex items-center gap-2 group" aria-label={`${siteConfig.nome} - página inicial`}>
-      <span class="inline-flex items-center justify-center w-10 h-10 rounded-md bg-primaria text-white font-bold text-lg shadow-card group-hover:bg-primaria-escura transition-colors">
+    <a href="/" class="flex items-center gap-2 group min-h-[44px]" aria-label={`${siteConfig.nome} - página inicial`}>
+      <span class="inline-flex items-center justify-center w-11 h-11 rounded-md bg-primaria text-white font-bold text-lg shadow-card group-hover:bg-primaria-escura transition-colors">
         SL
       </span>
       <span class="flex flex-col leading-tight">
         <span class="font-bold text-primaria-escura text-base sm:text-lg">
           {siteConfig.nome}
         </span>
-        <span class="text-[11px] sm:text-xs text-slate-600 hidden sm:block">
+        <span class="text-xs text-slate-600 hidden sm:block">
           {siteConfig.horario}
         </span>
       </span>
     </a>
 
-    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700" aria-label="Menu principal">
-      <a href="/" class="hover:text-primaria transition-colors">Início</a>
-      <a href="/sobre" class="hover:text-primaria transition-colors">Sobre</a>
-      <a href="/#servicos" class="hover:text-primaria transition-colors">Serviços</a>
-      <a href="/contato" class="hover:text-primaria transition-colors">Contato</a>
+    <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-700" aria-label="Menu principal">
+      <a href="/" class="py-2 hover:text-primaria-escura transition-colors">Início</a>
+      <a href="/sobre" class="py-2 hover:text-primaria-escura transition-colors">Sobre</a>
+      <a href="/#servicos" class="py-2 hover:text-primaria-escura transition-colors">Serviços</a>
+      <a href="/contato" class="py-2 hover:text-primaria-escura transition-colors">Contato</a>
     </nav>
 
     <a
       href={linkWa}
       target="_blank"
       rel="noopener"
-      class="hidden sm:inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsappEscuro text-white font-semibold px-4 py-2 rounded-sm text-sm transition-colors shadow-card"
+      class="hidden sm:inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsappEscuro text-white font-semibold px-5 py-3 rounded-sm text-sm transition-colors shadow-card min-h-[44px]"
       aria-label={`Chamar no WhatsApp ${siteConfig.whatsappDisplay}`}
     >
       <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -43,10 +43,10 @@ const linkWa = montarLinkWhatsApp();
       href={linkWa}
       target="_blank"
       rel="noopener"
-      class="sm:hidden inline-flex items-center gap-1 bg-whatsapp text-white font-semibold px-3 py-2 rounded-sm text-xs"
+      class="sm:hidden inline-flex items-center gap-2 bg-whatsapp text-white font-bold px-4 py-3 rounded-sm text-sm transition-colors min-h-[44px]"
       aria-label="Chamar no WhatsApp"
     >
-      <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20.52 3.48A11.78 11.78 0 0012.03 0C5.48 0 .17 5.31.17 11.86a11.73 11.73 0 001.59 5.92L0 24l6.4-1.68a11.86 11.86 0 005.63 1.44h.01c6.55 0 11.86-5.31 11.86-11.86a11.78 11.78 0 00-3.38-8.42z"/>
       </svg>
       Chamar

@@ -14,7 +14,7 @@ const { faq, titulo = 'Perguntas frequentes' } = Astro.props;
 
 {faq.length > 0 && (
   <section class="bg-white">
-    <div class="max-w-content mx-auto px-4 py-12 sm:py-16">
+    <div class="max-w-content mx-auto px-4 py-12 sm:py-20">
       <header class="max-w-2xl mb-8">
         <h2 class="text-2xl sm:text-3xl font-bold text-primaria-escura mb-2">
           {titulo}
@@ -30,10 +30,10 @@ const { faq, titulo = 'Perguntas frequentes' } = Astro.props;
             class="group bg-bgsuave rounded-md border border-slate-200 open:border-primaria/40 open:shadow-card transition-shadow"
             open={idx === 0}
           >
-            <summary class="cursor-pointer list-none p-4 font-semibold text-primaria-escura flex items-start justify-between gap-3">
+            <summary class="cursor-pointer list-none p-4 font-semibold text-primaria-escura flex items-start justify-between gap-3 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-primaria-escura rounded-md">
               <span>{item.pergunta}</span>
               <span
-                class="shrink-0 inline-flex w-6 h-6 items-center justify-center rounded-sm bg-primaria text-white text-sm font-bold transition-transform group-open:rotate-45"
+                class="shrink-0 inline-flex w-6 h-6 items-center justify-center rounded-sm bg-primaria-escura text-white text-sm font-bold transition-transform group-open:rotate-45"
                 aria-hidden="true"
               >
                 +

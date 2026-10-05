@@ -13,7 +13,7 @@ const placeholders = [
 ---
 
 <section class="bg-white">
-  <div class="max-w-content mx-auto px-4 py-12 sm:py-16">
+  <div class="max-w-content mx-auto px-4 py-12 sm:py-20">
     <header class="max-w-2xl mb-8 flex items-end justify-between gap-4 flex-wrap">
       <div>
         <h2 class="text-2xl sm:text-3xl font-bold text-primaria-escura mb-2">
@@ -23,7 +23,7 @@ const placeholders = [
           Nosso blog com conteúdo prático sobre cuidados com estofados.
         </p>
       </div>
-      <span class="text-xs font-semibold uppercase tracking-wide text-primaria bg-primaria/10 px-3 py-1 rounded-sm">
+      <span class="text-xs font-bold uppercase tracking-wide text-primaria-escura bg-primaria/15 px-3 py-1 rounded-sm">
         Em breve
       </span>
     </header>
@@ -32,16 +32,16 @@ const placeholders = [
       {placeholders.map((titulo) => (
         <li class="bg-bgsuave rounded-md border border-slate-200 overflow-hidden">
           <div
-            class="aspect-video bg-gradient-to-br from-primaria/15 to-primaria/5 flex items-center justify-center text-primaria-escura/60 text-xs font-medium"
+            class="aspect-video bg-gradient-to-br from-primaria/15 to-primaria/5 flex items-center justify-center text-primaria-escura/70 text-xs font-semibold"
             aria-hidden="true"
           >
             Em breve
           </div>
           <div class="p-4">
-            <h3 class="font-semibold text-slate-700 text-sm leading-snug">
+            <h3 class="font-semibold text-slate-800 text-sm leading-snug">
               {titulo}
             </h3>
-            <p class="text-xs text-slate-500 mt-1">
+            <p class="text-xs text-slate-600 mt-1">
               Artigo em preparação pela nossa equipe editorial.
             </p>
           </div>

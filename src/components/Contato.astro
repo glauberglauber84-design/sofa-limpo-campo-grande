@@ -14,12 +14,12 @@ const assuntoDefault = servicoLabel
 ---
 
 <section id="contato" class="bg-primaria-escura text-white">
-  <div class="max-w-content mx-auto px-4 py-12 sm:py-16 grid lg:grid-cols-2 gap-10">
+  <div class="max-w-content mx-auto px-4 py-12 sm:py-20 grid lg:grid-cols-2 gap-10">
     <div>
       <h2 class="text-2xl sm:text-3xl font-bold mb-3">
         Peça seu orçamento agora
       </h2>
-      <p class="text-slate-100/90 mb-6">
+      <p class="text-white/95 mb-6">
         Resposta em até 30 minutos no horário comercial. Atendemos toda
         {siteConfig.endereco.cidade} e região.
       </p>
@@ -28,7 +28,7 @@ const assuntoDefault = servicoLabel
         href={linkWa}
         target="_blank"
         rel="noopener"
-        class="inline-flex items-center gap-3 bg-whatsapp hover:bg-whatsappEscuro text-white font-bold px-6 py-4 rounded-sm text-lg shadow-card transition-colors mb-4"
+        class="inline-flex items-center gap-3 bg-whatsapp hover:bg-whatsappEscuro text-white font-bold px-6 py-4 rounded-sm text-lg shadow-card transition-all duration-200 ease-out motion-safe:hover:scale-[1.02] mb-4 min-h-[44px]"
       >
         <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
           <path d="M20.52 3.48A11.78 11.78 0 0012.03 0C5.48 0 .17 5.31.17 11.86a11.73 11.73 0 001.59 5.92L0 24l6.4-1.68a11.86 11.86 0 005.63 1.44h.01c6.55 0 11.86-5.31 11.86-11.86a11.78 11.78 0 00-3.38-8.42z"/>
@@ -36,7 +36,7 @@ const assuntoDefault = servicoLabel
         Chamar no WhatsApp
       </a>
 
-      <ul class="mt-4 space-y-2 text-sm text-slate-100/90">
+      <ul class="mt-4 space-y-2 text-sm text-white/95">
         <li>Telefone: {siteConfig.telefone}</li>
         <li>E-mail: {siteConfig.email}</li>
         <li>Horário: {siteConfig.horario}</li>
@@ -56,7 +56,7 @@ const assuntoDefault = servicoLabel
       <input type="hidden" name="_next" value={`${siteConfig.siteUrl}/obrigado`} />
 
       <div>
-        <label for="nome" class="block text-sm font-medium text-slate-700 mb-1">
+        <label for="nome" class="block text-sm font-semibold text-slate-800 mb-1">
           Nome *
         </label>
         <input
@@ -65,13 +65,13 @@ const assuntoDefault = servicoLabel
           type="text"
           required
           autocomplete="name"
-          class="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primaria focus:border-primaria"
+          class="w-full border border-slate-400 rounded-sm px-3 py-3 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primaria-escura focus:border-primaria-escura"
         />
       </div>
 
       <div class="grid sm:grid-cols-2 gap-4">
         <div>
-          <label for="telefone" class="block text-sm font-medium text-slate-700 mb-1">
+          <label for="telefone" class="block text-sm font-semibold text-slate-800 mb-1">
             WhatsApp *
           </label>
           <input
@@ -82,11 +82,11 @@ const assuntoDefault = servicoLabel
             inputmode="tel"
             autocomplete="tel"
             placeholder="(67) 99999-9999"
-            class="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primaria focus:border-primaria"
+            class="w-full border border-slate-400 rounded-sm px-3 py-3 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primaria-escura focus:border-primaria-escura"
           />
         </div>
         <div>
-          <label for="email" class="block text-sm font-medium text-slate-700 mb-1">
+          <label for="email" class="block text-sm font-semibold text-slate-800 mb-1">
             E-mail
           </label>
           <input
@@ -94,13 +94,13 @@ const assuntoDefault = servicoLabel
             name="email"
             type="email"
             autocomplete="email"
-            class="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primaria focus:border-primaria"
+            class="w-full border border-slate-400 rounded-sm px-3 py-3 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primaria-escura focus:border-primaria-escura"
           />
         </div>
       </div>
 
       <div>
-        <label for="mensagem" class="block text-sm font-medium text-slate-700 mb-1">
+        <label for="mensagem" class="block text-sm font-semibold text-slate-800 mb-1">
           Qual serviço você precisa? *
         </label>
         <textarea
@@ -108,20 +108,20 @@ const assuntoDefault = servicoLabel
           name="mensagem"
           required
           rows="4"
-          class="w-full border border-slate-300 rounded-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primaria focus:border-primaria"
+          class="w-full border border-slate-400 rounded-sm px-3 py-3 focus:outline-none focus:ring-2 focus:ring-primaria-escura focus:border-primaria-escura"
         >{servicoLabel ? `Gostaria de orçamento para: ${servicoLabel}` : ''}</textarea>
       </div>
 
       <button
         type="submit"
-        class="w-full bg-primaria hover:bg-primaria-escura text-white font-bold px-6 py-3 rounded-sm transition-colors"
+        class="w-full bg-primaria hover:bg-primaria-escura text-white font-bold px-6 py-3 rounded-sm transition-all duration-200 ease-out motion-safe:hover:scale-[1.01] min-h-[44px]"
       >
         Enviar pedido de orçamento
       </button>
 
-      <p class="text-xs text-slate-500">
+      <p class="text-xs text-slate-600">
         Também pode nos chamar direto por
-        <a href={`mailto:${siteConfig.email}`} class="text-primaria underline">
+        <a href={`mailto:${siteConfig.email}`} class="text-primaria-escura font-semibold underline hover:no-underline">
           e-mail
         </a>
         se preferir.
