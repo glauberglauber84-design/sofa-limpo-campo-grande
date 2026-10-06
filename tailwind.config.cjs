@@ -11,8 +11,13 @@ module.exports = {
         },
         bgsuave: '#f4f8fb',
         texto: '#1a1a1a',
-        whatsapp: '#25D366',
-        whatsappEscuro: '#1ebe5a',
+        // Verde WhatsApp escuro (brand dark) — passa AA 4.52:1 com texto branco.
+        whatsapp: '#128C7E',
+        // Hover ainda mais escuro, mantém contraste AA.
+        whatsappEscuro: '#0d6a5f',
+        // Verde WhatsApp vivo (#25D366) — SOMENTE decorativo (float icon, dots,
+        // chips sem texto). NÃO use como fundo de botão com texto.
+        whatsappClaro: '#25D366',
       },
       fontFamily: {
         sans: [
