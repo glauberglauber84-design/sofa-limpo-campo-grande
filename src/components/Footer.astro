@@ -14,7 +14,7 @@ const ano = new Date().getFullYear();
         {servicos.map((s) => (
           <li>
             <a
-              href={`/${s.slug}-campo-grande`}
+              href={`/${s.slug}-campo-grande/`}
               class="flex items-center py-2 min-h-[44px] hover:text-white hover:underline underline-offset-4 transition-colors"
             >
               {s.label}
@@ -70,9 +70,9 @@ const ano = new Date().getFullYear();
         <p>CEP: {siteConfig.endereco.cep}</p>
       </address>
       <nav class="mt-4 text-sm" aria-label="Rodapé institucional">
-        <a href="/sobre" class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">Sobre nós</a>
-        <a href="/contato" class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">Fale conosco</a>
-        <a href="/politica-privacidade" class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">Política de privacidade</a>
+        <a href="/sobre/" class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">Sobre nós</a>
+        <a href="/contato/" class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">Fale conosco</a>
+        <a href="/politica-privacidade/" class="flex items-center py-2 min-h-[44px] hover:text-white transition-colors">Política de privacidade</a>
       </nav>
     </section>
   </div>
