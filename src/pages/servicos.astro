@@ -1,0 +1,136 @@
+---
+import { readFileSync, existsSync } from 'node:fs';
+import path from 'node:path';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServicosGrid from '../components/ServicosGrid.astro';
+import ComoNosEncontrar from '../components/ComoNosEncontrar.astro';
+import Contato from '../components/Contato.astro';
+import { siteConfig, servicos } from '../config/siteConfig';
+import {
+  localBusinessJsonLd,
+  breadcrumbJsonLd,
+} from '../lib/jsonld';
+
+interface ConteudoCategoria {
+  title?: string;
+  description?: string;
+  h1?: string;
+  hero_subtitle?: string;
+  intro_texto?: string;
+}
+
+// Fallback silencioso: se Maria ainda não entregou o JSON, segue com defaults.
+const jsonPath = path.join(
+  process.cwd(),
+  'src',
+  'data',
+  'pages',
+  'servicos.json'
+);
+
+let conteudo: ConteudoCategoria | null = null;
+try {
+  if (existsSync(jsonPath)) {
+    const raw = readFileSync(jsonPath, 'utf-8');
+    conteudo = JSON.parse(raw) as ConteudoCategoria;
+  }
+} catch {
+  conteudo = null;
+}
+
+const title =
+  conteudo?.title ??
+  `Serviços de higienização em ${siteConfig.endereco.cidade} - ${siteConfig.endereco.estado}`;
+
+const description =
+  conteudo?.description ??
+  `Confira todos os serviços de higienização de estofados que a ${siteConfig.nome} realiza em ${siteConfig.endereco.cidade}: sofás, colchões, poltronas, tapetes, carros, cortinas e mais.`;
+
+const heroTitulo =
+  conteudo?.h1 ??
+  `Serviços de higienização em ${siteConfig.endereco.cidade}`;
+
+const heroSubtitulo =
+  conteudo?.hero_subtitle ??
+  `Sofás, colchões, poltronas, tapetes, cortinas, bancos de carro e impermeabilização. Atendemos toda ${siteConfig.endereco.cidade} - ${siteConfig.endereco.estado}.`;
+
+const introTexto =
+  conteudo?.intro_texto ??
+  `A ${siteConfig.nome} atende residências, escritórios e veículos em toda ${siteConfig.endereco.cidade} com equipamento profissional e produtos antialérgicos aprovados pela ANVISA. Cada serviço abaixo abre uma página detalhada com valores, prazo de secagem e dúvidas comuns.\n\nEscolha o serviço que precisa, veja os detalhes e peça seu orçamento direto pelo WhatsApp. Resposta em até 30 minutos no horário comercial.`;
+
+const paragrafos = introTexto
+  .split(/\n{2,}/)
+  .map((p) => p.trim())
+  .filter((p) => p.length > 0);
+
+const canonical = `${siteConfig.siteUrl}/servicos/`;
+
+const webPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  name: title,
+  url: canonical,
+  inLanguage: 'pt-BR',
+  isPartOf: { '@id': `${siteConfig.siteUrl}/#website` },
+  about: { '@id': `${siteConfig.siteUrl}/#business` },
+};
+
+const itemListJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${canonical}#itemlist`,
+  name: `Serviços oferecidos pela ${siteConfig.nome}`,
+  itemListElement: servicos.map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: s.label,
+    url: `${siteConfig.siteUrl}/${s.slug}-campo-grande/`,
+  })),
+};
+
+const jsonLd = [
+  localBusinessJsonLd(),
+  webPageJsonLd,
+  breadcrumbJsonLd([
+    { nome: 'Início', url: siteConfig.siteUrl },
+    { nome: 'Serviços', url: canonical },
+  ]),
+  itemListJsonLd,
+].filter((x): x is Record<string, unknown> => x !== null);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={jsonLd}
+>
+  <Hero
+    titulo={heroTitulo}
+    subtitulo={heroSubtitulo}
+    destaque="Todos os serviços"
+    ctaLabel="Pedir orçamento no WhatsApp"
+  />
+
+  <section class="bg-white">
+    <div class="max-w-content mx-auto px-4 py-12 sm:py-16">
+      <div class="max-w-3xl space-y-4 text-slate-700">
+        {paragrafos.map((p) => (
+          <p>{p}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ServicosGrid
+    titulo={`Nossos ${servicos.length} serviços`}
+    subtitulo="Clique no serviço para ver detalhes, dúvidas comuns e pedir orçamento."
+  />
+
+  <ComoNosEncontrar />
+
+  <Contato />
+</BaseLayout>

@@ -17,10 +17,12 @@ const placeholders = [
     <header class="max-w-2xl mb-8 flex items-end justify-between gap-4 flex-wrap">
       <div>
         <h2 class="text-2xl sm:text-3xl font-bold text-primaria-escura mb-2">
-          Dicas e novidades
+          <a href="/conteudo/" class="hover:underline underline-offset-4">
+            Dicas e novidades
+          </a>
         </h2>
         <p class="text-slate-700">
-          Nosso blog com conteúdo prático sobre cuidados com estofados.
+          Nosso espaço com conteúdo prático sobre cuidados com estofados.
         </p>
       </div>
       <span class="text-xs font-bold uppercase tracking-wide text-primaria-escura bg-primaria/15 px-3 py-1 rounded-sm">
@@ -48,5 +50,15 @@ const placeholders = [
         </li>
       ))}
     </ul>
+
+    <div class="mt-8 text-center">
+      <a
+        href="/conteudo/"
+        class="inline-flex items-center justify-center gap-2 border-2 border-primaria-escura text-primaria-escura hover:bg-primaria-escura hover:text-white font-semibold px-6 py-3 rounded-sm text-sm transition-colors min-h-[44px]"
+      >
+        Ver todo o conteúdo
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
   </div>
 </section>

@@ -1,0 +1,129 @@
+---
+import { readFileSync, existsSync } from 'node:fs';
+import path from 'node:path';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ComoNosEncontrar from '../components/ComoNosEncontrar.astro';
+import { siteConfig, montarLinkWhatsApp } from '../config/siteConfig';
+import {
+  localBusinessJsonLd,
+  breadcrumbJsonLd,
+} from '../lib/jsonld';
+
+interface ConteudoCategoria {
+  title?: string;
+  description?: string;
+  h1?: string;
+  hero_subtitle?: string;
+  intro_texto?: string;
+}
+
+// Fallback silencioso: se Maria ainda não entregou o JSON, segue com defaults.
+const jsonPath = path.join(
+  process.cwd(),
+  'src',
+  'data',
+  'pages',
+  'conteudo.json'
+);
+
+let conteudo: ConteudoCategoria | null = null;
+try {
+  if (existsSync(jsonPath)) {
+    const raw = readFileSync(jsonPath, 'utf-8');
+    conteudo = JSON.parse(raw) as ConteudoCategoria;
+  }
+} catch {
+  conteudo = null;
+}
+
+const title =
+  conteudo?.title ??
+  `Conteúdo e dicas de higienização - ${siteConfig.nome}`;
+
+const description =
+  conteudo?.description ??
+  `Artigos práticos sobre cuidados com sofás, colchões, tapetes e estofados em geral. A equipe da ${siteConfig.nome} está preparando novos conteúdos.`;
+
+const heroTitulo =
+  conteudo?.h1 ??
+  'Conteúdo: dicas e cuidados com seus estofados';
+
+const heroSubtitulo =
+  conteudo?.hero_subtitle ??
+  `A equipe da ${siteConfig.nome} está preparando artigos práticos sobre higienização, manchas, impermeabilização e manutenção. Em breve neste espaço.`;
+
+const introTexto =
+  conteudo?.intro_texto ??
+  `Enquanto a gente finaliza os primeiros artigos, você pode falar direto com o nosso time no WhatsApp. Mandamos orçamento, tiramos dúvidas sobre tecidos e passamos cuidados específicos pro seu caso. Sem rodeio, sem robô.`;
+
+const linkWa = montarLinkWhatsApp();
+const canonical = `${siteConfig.siteUrl}/conteudo/`;
+
+const webPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  name: title,
+  url: canonical,
+  inLanguage: 'pt-BR',
+  isPartOf: { '@id': `${siteConfig.siteUrl}/#website` },
+  about: { '@id': `${siteConfig.siteUrl}/#business` },
+};
+
+const jsonLd = [
+  localBusinessJsonLd(),
+  webPageJsonLd,
+  breadcrumbJsonLd([
+    { nome: 'Início', url: siteConfig.siteUrl },
+    { nome: 'Conteúdo', url: canonical },
+  ]),
+].filter((x): x is Record<string, unknown> => x !== null);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={jsonLd}
+>
+  <Hero
+    titulo={heroTitulo}
+    subtitulo={heroSubtitulo}
+    destaque="Em breve"
+    ctaLabel="Falar com a gente no WhatsApp"
+  />
+
+  <section class="bg-white">
+    <div class="max-w-content mx-auto px-4 py-12 sm:py-16">
+      <div class="max-w-3xl mx-auto bg-bgsuave border border-slate-200 rounded-lg p-8 sm:p-10 text-center shadow-card">
+        <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primaria/15 text-primaria-escura mb-5" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v12h16V6H4zm2 2h8v2H6V8zm0 4h12v2H6v-2zm0 4h10v2H6v-2z"/>
+          </svg>
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-primaria-escura mb-3">
+          Novos artigos a caminho
+        </h2>
+        <p class="text-slate-700 mb-6 max-w-prose mx-auto">
+          {introTexto}
+        </p>
+        <a
+          href={linkWa}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center justify-center gap-2 bg-whatsapp hover:bg-whatsappEscuro text-white font-bold px-6 py-3 rounded-sm text-base shadow-card transition-all duration-200 ease-out motion-safe:hover:scale-[1.02] min-h-[44px]"
+          aria-label={`Falar no WhatsApp ${siteConfig.whatsappDisplay}`}
+        >
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.52 3.48A11.78 11.78 0 0012.03 0C5.48 0 .17 5.31.17 11.86a11.73 11.73 0 001.59 5.92L0 24l6.4-1.68a11.86 11.86 0 005.63 1.44h.01c6.55 0 11.86-5.31 11.86-11.86a11.78 11.78 0 00-3.38-8.42z"/>
+          </svg>
+          Chamar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <ComoNosEncontrar />
+</BaseLayout>
