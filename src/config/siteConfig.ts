@@ -6,8 +6,8 @@ export interface Servico {
 }
 
 export const siteConfig = {
-  nome: 'Sofá Limpo Campo Grande',
-  tagline: 'Higienização profissional de estofados em Campo Grande - MS',
+  nome: 'Lavagem & Higiene CG',
+  tagline: 'Lavagem e higienização profissional de estofados, colchões, tapetes e automotivos em Campo Grande - MS',
   descricao:
     'Higienização profissional de sofás, colchões, poltronas, tapetes e estofados automotivos em Campo Grande - MS. Produtos antialérgicos, secagem rápida, orçamento sem compromisso.',
   whatsapp: '67999999999',
