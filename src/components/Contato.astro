@@ -6,7 +6,7 @@ export interface Props {
 }
 
 const { servicoLabel } = Astro.props;
-const linkWa = montarLinkWhatsApp(servicoLabel);
+const linkWa = montarLinkWhatsApp();
 const formAction = `https://formspree.io/f/${siteConfig.formspreeId}`;
 const assuntoDefault = servicoLabel
   ? `Orçamento de ${servicoLabel}`

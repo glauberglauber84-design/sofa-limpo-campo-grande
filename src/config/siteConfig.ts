@@ -42,14 +42,10 @@ export const siteConfig = {
   anoFundacao: 2019,
 } as const;
 
-export function montarLinkWhatsApp(servicoLabel?: string): string {
-  // Mensagem pré-preenchida: identifica a origem (site + cidade) e, quando a
-  // página é de um serviço específico, qualifica o pedido de orçamento com ele.
-  const base = `Olá! Vim pelo site ${siteConfig.nome} em ${siteConfig.endereco.cidade}-${siteConfig.endereco.estado}.`;
-  const pedido = servicoLabel
-    ? `Gostaria de solicitar um orçamento de ${servicoLabel}.`
-    : 'Gostaria de solicitar um orçamento.';
-  const texto = encodeURIComponent(`${base} ${pedido}`);
+export function montarLinkWhatsApp(): string {
+  const texto = encodeURIComponent(
+    `Olá! Vim pelo site ${siteConfig.nome} em ${siteConfig.endereco.cidade}-${siteConfig.endereco.estado}. Gostaria de solicitar um orçamento.`
+  );
   return `https://wa.me/55${siteConfig.whatsapp}?text=${texto}`;
 }
 

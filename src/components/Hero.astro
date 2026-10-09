@@ -5,7 +5,6 @@ export interface Props {
   titulo: string;
   subtitulo: string;
   ctaLabel?: string;
-  servicoLabel?: string;
   destaque?: string;
 }
 
@@ -13,11 +12,10 @@ const {
   titulo,
   subtitulo,
   ctaLabel = 'Pedir orçamento no WhatsApp',
-  servicoLabel,
   destaque,
 } = Astro.props;
 
-const linkWa = montarLinkWhatsApp(servicoLabel);
+const linkWa = montarLinkWhatsApp();
 ---
 
 <section class="relative bg-gradient-to-br from-primaria-escura via-primaria to-primaria-clara text-white">
